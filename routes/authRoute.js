@@ -102,11 +102,24 @@ router.post("/login", async (req, res) => {
     try {
         const { primary_email, password } = req.body;
         const userr = await authModel.findOne({ primary_email: primary_email });
+    
         const val = comparePassword(password, userr.password);
         if (val) {
-            var token = await jwt.sign({ primary_email }, process.env.SECRET_KEY)
-
-            return res.status(200).send({ success: true, message: "login successfully", token });
+            const payload={
+                primary_email:primary_email
+            }
+           
+            var token = await jwt.sign(payload, process.env.SECRET_KEY)
+            const options={
+                expires:new Date(Date.now()+process.env.EXPIREC*24*60*60*1000),
+                httpOnly:true,
+            }
+            res.status(201).cookie('token',token,options).json({
+                success:true,
+                message:"login successfully",
+                 token,
+            })
+            // return res.status(200).send({ success: true, message: "login successfully", token });
         } else {
             return res.status(401).send({
                 success: false,
@@ -114,6 +127,7 @@ router.post("/login", async (req, res) => {
             })
         }
     } catch (error) {
+        console.log(error);
         res.status(500).send({
             success: false,
             message: "some internal error occurred",
