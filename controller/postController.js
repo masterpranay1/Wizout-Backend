@@ -183,6 +183,7 @@ exports.commetOnPost=async(req,res)=>{
             success:false,
             message:"type something"
         })
+
         return;
       }
       comments.push({text:req.body.text,postedBy:req.user._id});
@@ -197,7 +198,7 @@ exports.commetOnPost=async(req,res)=>{
     }catch(err){
         res.status(201).json({
             success:false,
-            message:"something went wrong"
+            message:"something went wrong , try after sometime"
           })
     }
 }
