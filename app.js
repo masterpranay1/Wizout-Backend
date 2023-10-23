@@ -9,15 +9,15 @@ dotenv.config();
 /* Local Imports */
 /* ************* */
 
-import connectDB from './config/db'
+import connectDB from './config/db.js'
 connectDB();
 
 /* ************* */
 /* Routes Import */
 /* ************* */
 
-import postRoute from './routes/postRoute'
-import authRoute from './routes/authRoute'
+// import postRoute from './routes/postRoute.js'
+// import authRoute from './routes/authRoute.js'
 
 /* ***************** */
 /* Express APP Logic */
@@ -38,8 +38,8 @@ app.use(cookieParser());
 app.use(express.json());
 
 // routes
-app.use('/api/v1/auth', authRoute);
-app.use('/api/v1/post', postRoute);
+// app.use('/api/v1/auth', authRoute);
+// app.use('/api/v1/post', postRoute);
 
 app.listen(PORT, () => {
     console.log(`app is listening at port ${PORT}`);
