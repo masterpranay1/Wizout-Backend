@@ -1,6 +1,5 @@
 const express = require("express");
 const cookieParser = require('cookie-parser')
-const bodyParser = require('body-parser');
 const cors = require('cors')
 
 require('dotenv').config();
@@ -14,8 +13,7 @@ connectDB();
 const app = express();
 
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.json());
 
 const PORT = process.env.PORT || 8000;
 const corsOption = {
