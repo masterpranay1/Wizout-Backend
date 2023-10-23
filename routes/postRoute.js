@@ -1,13 +1,22 @@
-const express = require('express');
-const PostModel=require('../models/postModel');
-const {createPost, getALLPosts, getOwnPosts, doUpvote, doDownvote, commetOnPost}=require('../controller/postController');
-const { auth } = require('../middleware/auth');
+import express from "express";
+
+import {
+  createPost,
+  getALLPosts,
+  getOwnPosts,
+  doUpvote,
+  doDownvote,
+  commetOnPost,
+} from "../controller/postController.js";
+import { auth } from "../middleware/auth.js";
 
 const router = express.Router();
-router.route('/new').post(auth,createPost);
-router.route('/get/all').get(getALLPosts);
-router.route('/get/own').get(auth,getOwnPosts);
-router.route('/downvote').post(auth,doDownvote);
-router.route('/upvote').post(auth,doUpvote);
-router.route('/comment').post(auth,commetOnPost);
-module.exports = router;
+
+router.post("/new", auth, createPost);
+router.get("/get/all", getALLPosts);
+router.get("/get/own", auth, getOwnPosts);
+router.post("/downvote", auth, doDownvote);
+router.post("/upvote", auth, doUpvote);
+router.post("/comment", auth, commetOnPost);
+
+export default router;
