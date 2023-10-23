@@ -1,19 +1,27 @@
-const express = require("express");
-const cookieParser = require('cookie-parser')
-const cors = require('cors')
+import express from 'express'
+import cookieParser from 'cookie-parser';
+import cors from 'cors'
 
-require('dotenv').config();
+import dotenv from 'dotenv'
+dotenv.config();
 
-const postRoute = require("./routes/postRoute");
-const authRoute = require("./routes/authRoute");
+/* ************* */
+/* Local Imports */
+/* ************* */
 
-const connectDB = require("./config/db");
+import connectDB from './config/db'
 connectDB();
 
-const app = express();
+/* ************* */
+/* Routes Import */
+/* ************* */
 
-app.use(cookieParser());
-app.use(express.json());
+import postRoute from './routes/postRoute'
+import authRoute from './routes/authRoute'
+
+/* ***************** */
+/* Express APP Logic */
+/* ***************** */
 
 const PORT = process.env.PORT || 8000;
 const corsOption = {
@@ -23,8 +31,13 @@ const corsOption = {
     ],
 };
 
-// routes
+const app = express();
+
 app.use(cors(corsOption))
+app.use(cookieParser());
+app.use(express.json());
+
+// routes
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/post', postRoute);
 
