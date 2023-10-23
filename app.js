@@ -16,8 +16,8 @@ connectDB();
 /* Routes Import */
 /* ************* */
 
+import authRoute from './routes/authRoute.js'
 // import postRoute from './routes/postRoute.js'
-// import authRoute from './routes/authRoute.js'
 
 /* ***************** */
 /* Express APP Logic */
@@ -38,7 +38,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 // routes
-// app.use('/api/v1/auth', authRoute);
+app.use('/api/v1/auth', authRoute);
 // app.use('/api/v1/post', postRoute);
 
 app.listen(PORT, () => {
