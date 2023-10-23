@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
 const postSchema = new mongoose.Schema({
   author: {
     type: mongoose.Schema.ObjectId,
-    ref: 'authModel',
+    ref: "authModel",
     required: true,
   },
   title: {
@@ -17,32 +17,32 @@ const postSchema = new mongoose.Schema({
   upvotes: [
     {
       type: mongoose.Schema.ObjectId,
-      ref: 'authModel', 
+      ref: "authModel",
     },
   ],
   downvotes: [
     {
       type: mongoose.Schema.ObjectId,
-      ref: 'authModel', 
+      ref: "authModel",
     },
   ],
   images: [
     // for image we have to decide ,either we use aws bucket or cloudinary
     {
-      type: String, 
+      type: String,
     },
   ],
   visibility: {
-    type: String, 
+    type: String,
     required: true,
-    default:"Global"
+    default: "Global",
   },
   comments: [
     {
       text: String,
       postedBy: {
         type: mongoose.Schema.ObjectId,
-        ref: 'authModel', 
+        ref: "authModel",
       },
       createdAt: {
         type: Date,
@@ -56,6 +56,4 @@ const postSchema = new mongoose.Schema({
   },
 });
 
-const Post = mongoose.model('Post', postSchema);
-
-module.exports = Post;
+export default mongoose.model("Post", postSchema);
