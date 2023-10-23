@@ -7,8 +7,8 @@ import {
   doUpvote,
   doDownvote,
   commetOnPost,
-} from "../controller/postController";
-import { auth } from "../middleware/auth";
+} from "../controller/postController.js";
+import { auth } from "../middleware/auth.js";
 
 const router = express.Router();
 
