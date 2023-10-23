@@ -1,13 +1,17 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const connectDB = async () => {
     try {
-        const conn = await mongoose.connect('mongodb://127.0.0.1:27017/tatabackend');
-        console.log('db connected successfully');
-    } catch (error) {
-        console.log('error in db connecting');
+        const response = await mongoose.connect(
+            process.env.MONGO_URI
+        );
+        if (response) {
+            console.log("MongoDB connected...");
+        }
+    } catch (err) {
+        console.log(err);
+        process.exit(1);
     }
-}
-
+};
 
 module.exports = connectDB;
