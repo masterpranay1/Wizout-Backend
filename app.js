@@ -17,7 +17,7 @@ connectDB();
 /* ************* */
 
 import authRoute from './routes/authRoute.js'
-import postRoute from './routes/postRoute.js'
+// import postRoute from './routes/postRoute.js'
 
 /* ***************** */
 /* Express APP Logic */
@@ -39,7 +39,7 @@ app.use(express.json());
 
 // routes
 app.use('/api/v1/auth', authRoute);
-app.use('/api/v1/post', postRoute);
+// app.use('/api/v1/post', postRoute);
 
 app.listen(PORT, () => {
     console.log(`app is listening at port ${PORT}`);
