@@ -35,7 +35,7 @@ class UserService {
   // check if a user exists in the database but not verified
   async checkUnverifiedUser(email) {
     try {
-      const user = await User.findOne({ email, verified: false });
+      const user = await User.findOne({ email, isVerified: false });
       if (user) {
         console.log('Unverified user exists in the database');
         return user;
