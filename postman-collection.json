@@ -1,0 +1,143 @@
+{
+    "info": {
+        "_postman_id": "1903ca3c-858b-4fd4-b4e1-ece6ea1bd50d",
+        "name": "wizout",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "basic",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8000/",
+                    "path": [
+                        ""
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                }
+            }
+        },
+        {
+            "name": "Register User",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8000/api/v1/auth/register",
+                    "path": [
+                        "api",
+                        "v1",
+                        "auth",
+                        "register"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"uid\" : \"21bcs10539\",\n  \"name\" : \"Pranay Raj\",\n  \"email\" : \"21bcs10539@cuchd.in\",\n  \"password\" : \"abcd1234\"\n}"
+                }
+            }
+        },
+        {
+            "name": "Send Verification Email",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8000/api/v1/auth/send-verification-email",
+                    "path": [
+                        "api",
+                        "v1",
+                        "auth",
+                        "send-verification-email"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"email\" : \"21bcs10539@cuchd.in\"\n}"
+                }
+            }
+        },
+        {
+            "name": "verify otp",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8000/api/v1/auth/verify-otp",
+                    "path": [
+                        "api",
+                        "v1",
+                        "auth",
+                        "verify-otp"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"email\" : \"21bcs10539@cuchd.in\",\n  \"otp\" : \"2699\"\n}"
+                }
+            }
+        },
+        {
+            "name": "Login User",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8000/api/v1/auth/login",
+                    "path": [
+                        "api",
+                        "v1",
+                        "auth",
+                        "login"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"email\" : \"21bcs10539@cuchd.in\",\n  \"password\" : \"abcd1234\"\n}"
+                }
+            }
+        }
+    ]
+}
