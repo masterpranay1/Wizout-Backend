@@ -1,6 +1,7 @@
 import emailService from "../services/emailService.js";
 import otpService from "../services/otpService.js";
 import UserService from "../services/userService.js";
+import hashService from "../services/hashService.js";
 
 class AuthController {
   // Method for handling user registration
@@ -20,7 +21,10 @@ class AuthController {
           .json({ error: "User already exists but not verified" });
       }
 
-      const user = await UserService.createUser(uid, name, email, password);
+      // Hash password
+      const hashedPassword = await hashService.hashPassword(password);
+
+      const user = await UserService.createUser(uid, name, email, hashedPassword);
       res.status(201).json({
         message: "User created successfully but not verified",
         user,
@@ -102,6 +106,13 @@ class AuthController {
       // Check if user is already verified
       if (!isUserExist.isVerified) {
         return res.status(400).json({ error: "User is not verified" });
+      }
+
+      // Compare password
+      const isMatch = await hashService.comparePasswords(password, isUserExist.password);
+
+      if(!isMatch) {
+        return res.status(400).json({ error: "Invalid password" });
       }
 
       res.status(200).json({ user: isUserExist });
