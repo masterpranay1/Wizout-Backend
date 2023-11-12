@@ -39,7 +39,7 @@ class AuthController {
     }
 
     // Check if user is already verified
-    if (user.verified) {
+    if (user.isVerified) {
       return res.status(400).json({ error: "User is already verified" });
     }
 
@@ -70,7 +70,7 @@ class AuthController {
     }
 
     // Check if user is already verified
-    if (user.verified) {
+    if (user.isVerified) {
       return res.status(400).json({ error: "User is already verified" });
     }
 
@@ -93,9 +93,20 @@ class AuthController {
   async login(req, res) {
     try {
       const { email, password } = req.body;
-      const user = await UserService.loginUser(email, password);
-      res.status(200).json({ user });
+      const isUserExist = await UserService.checkUser(email);
+
+      if(!isUserExist) {
+        return res.status(400).json({ error: "User does not exist" });
+      }
+
+      // Check if user is already verified
+      if (!isUserExist.isVerified) {
+        return res.status(400).json({ error: "User is not verified" });
+      }
+
+      res.status(200).json({ user: isUserExist });
     } catch (error) {
+      console.log(error);
       res.status(400).json({ error: error.message });
     }
   }
