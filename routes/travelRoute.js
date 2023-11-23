@@ -35,4 +35,14 @@ router.post("/accept-request", TravelController.acceptRequest);
 // reject a request
 router.post("/reject-request", TravelController.rejectRequest);
 
+// get all travel id ( created + requested and accepted) of a user
+router.post("/get-all-travel-id-of-user", TravelController.getAllTravelIdOfUser);
+
+// get all requests of a user
+router.post("/get-all-request-id-of-user", TravelController.getAllRequestIdOfUser);
+
+// get all travellers of a trip
+router.post("/get-all-travellers", TravelController.getAllTravellers);
+
+
 export default router;
