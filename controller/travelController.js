@@ -29,7 +29,7 @@ class TravelController {
     }
   }
 
-  async getAllTripsIdOfUser(req, res) {
+  async getAllTripsIdCreatedbyUser(req, res) {
     const { userId } = req.body;
     try {
       const trips = await TripService.getAllTripsId({ userId });

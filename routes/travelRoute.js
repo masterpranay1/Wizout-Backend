@@ -18,7 +18,7 @@ router.post("/create-trip", TravelController.createTrip);
 router.get("/get-all-trips-id", TravelController.getAllTripsId);
 
 // get all trips id of a user
-router.post("/get-all-trips-id-of-user", TravelController.getAllTripsIdOfUser);
+router.post("/get-all-trips-id-created-by-user", TravelController.getAllTripsIdCreatedbyUser);
 
 // Get a trip by id
 router.post("/get-trip-by-id", TravelController.getTripById);
