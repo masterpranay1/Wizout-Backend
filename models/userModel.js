@@ -27,6 +27,12 @@ const userSchema = new mongoose.Schema(
     otp: {
       type: String,
     },
+    travelId: {
+      type: [mongoose.ObjectId],
+    },
+    requestId: {
+      type: [mongoose.ObjectId],
+    }
   },
   {
     timestamps: true,
