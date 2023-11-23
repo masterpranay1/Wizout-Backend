@@ -81,6 +81,27 @@ class UserService {
       return error;
     }
   }
+
+  async addTravelId(userId, travelId) {
+    const user = await User.findById(userId);
+    user.travelId.push(travelId);
+    await user.save();
+    return user;
+  }
+
+  async addRequestId(userId, requestId) {
+    const user = await User.findById(userId);
+    user.requestId.push(requestId);
+    await user.save();
+    return user;
+  }
+
+  async removeRequestId(userId, requestId) {
+    const user = await User.findById(userId);
+    user.requestId = user.requestId.filter((id) => id.toString() !== requestId);
+    await user.save();
+    return user;
+  }
 }
 
 export default new UserService();
