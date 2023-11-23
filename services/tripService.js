@@ -21,7 +21,7 @@ class TripService {
     const trips = await TripModel.find({
       ...filter,
     }).select("_id");
-    return trips;
+    return trips.map((trip) => trip._id);
   }
 
   async deleteTripById(id) {
