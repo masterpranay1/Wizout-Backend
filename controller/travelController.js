@@ -56,6 +56,12 @@ class TravelController {
       if (isOwner) {
         throw new Error("You are the owner of this trip");
       }
+
+      const isInTravelers = await TripService.checkIdInTravelers(userId, tripId);
+      if (isInTravelers) {
+        throw new Error("You are already in the travelers");
+      }
+
       const trip = await TripService.sendRequest(userId, tripId);
       res.status(200).json(trip);
     } catch (error) {
@@ -82,6 +88,17 @@ class TravelController {
       if (!(await TripService.isOwner(userId, tripId))) {
         throw new Error("You are not the owner of this trip");
       }
+
+      const isInTravelers = await TripService.checkIdInTravelers(acceptId, tripId);
+      if (isInTravelers) {
+        throw new Error("This user is already in the travelers");
+      }
+
+      const isInRequests = await TripService.checkIdInRequests(acceptId, tripId);
+      if (!isInRequests) {
+        throw new Error("This user is not in the requests");
+      }
+
       const trip = await TripService.acceptRequest(acceptId, tripId);
       res.status(200).json(trip);
     } catch (error) {
@@ -95,6 +112,12 @@ class TravelController {
       if (!(await TripService.isOwner(userId, tripId))) {
         throw new Error("You are not the owner of this trip");
       }
+
+      const isInRequests = await TripService.checkIdInRequests(acceptId, tripId);
+      if (!isInRequests) {
+        throw new Error("This user is not in the requests");
+      }
+
       const trip = await TripService.rejectRequest(acceptId, tripId);
       res.status(200).json(trip);
     } catch (error) {

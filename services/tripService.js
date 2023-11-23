@@ -60,6 +60,18 @@ class TripService {
     const trip = await TripModel.findById(tripId);
     return trip.userId.toString() === userId;
   }
+
+  async checkIdInRequests(userId, tripId) {
+    const trip = await TripModel.findById(tripId);
+    const isInRequests = trip.requests.some((request) => request.toString() === userId);
+    return isInRequests;
+  }
+
+  async checkIdInTravelers(userId, tripId) {
+    const trip = await TripModel.findById(tripId);
+    const isInTravelers = trip.travelers.some((traveler) => traveler.toString() === userId);
+    return isInTravelers;
+  }
 }
 
 export default new TripService();
